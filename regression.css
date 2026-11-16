@@ -1,0 +1,399 @@
+
+/* GENERAL */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #000000;
+    font-family: Arial, sans-serif;
+}
+
+
+/* NAVBAR */
+
+.navbar {
+    height: 68px;
+    padding: 0 9%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #000000;
+    border-bottom: 1px solid #222;
+}
+
+/* Logo */
+
+.logo {
+    font-size: 18px;
+    font-weight: 600;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+/* Navigation Links */
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 45px;
+}
+
+.nav-links a,
+.github {
+    text-decoration: none;
+    font-size: 13px;
+    color: #ffffff;
+    transition: color 0.2s;
+}
+.nav-links a:hover,
+.nav-links a.active,
+.github:hover {
+    color: #ff5277;
+}
+
+/* =========================================
+   WRITING PAGE — EDITORIAL DESIGN
+========================================= */
+
+:root {
+    --accent: #ff5277;
+    --bg: #000000;
+    --surface: #0b0b0b;
+    --border: #252525;
+    --text: #f5f5f5;
+    --muted: #999999;
+}
+
+/* PAGE CONTAINER */
+
+.writing-container {
+    width: 82%;
+    max-width: 1050px;
+    margin: 0 auto;
+    padding: 100px 0 120px;
+    color: var(--text);
+}
+
+
+/* =========================================
+   ARTICLE HEADER
+========================================= */
+
+.writing-header {
+    max-width: 850px;
+    padding-bottom: 45px;
+    border-bottom: 1px solid var(--border);
+}
+
+.section-label {
+    color: var(--accent);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+}
+
+.writing-header h1 {
+    font-size: clamp(38px, 5vw, 62px);
+    line-height: 1.12;
+    letter-spacing: -2px;
+    font-weight: 650;
+    max-width: 800px;
+    margin-bottom: 25px;
+}
+
+.writing-intro {
+    max-width: 700px;
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.9;
+    font-weight: 400;
+}
+
+
+/* ARTICLE METADATA */
+
+.article-meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 32px;
+}
+
+.article-meta span {
+    color: #888;
+    font-size: 12px;
+    letter-spacing: 0.3px;
+}
+
+.article-meta span:not(:last-child)::after {
+    content: "/";
+    color: #444;
+    margin-left: 12px;
+}
+
+
+/* =========================================
+   ARTICLE BODY
+========================================= */
+
+.blog-content {
+    max-width: 740px;
+    margin-top: 65px;
+    color: #bdbdbd;
+    font-size: 16px;
+    line-height: 1.95;
+}
+
+/* HEADINGS */
+
+.blog-content h2 {
+    color: #f5f5f5;
+    font-size: 27px;
+    font-weight: 600;
+    letter-spacing: -0.6px;
+    line-height: 1.4;
+    margin-top: 65px;
+    margin-bottom: 22px;
+}
+
+.blog-content h3 {
+    color: #eeeeee;
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 40px;
+    margin-bottom: 15px;
+}
+
+/* PARAGRAPHS */
+
+.blog-content p {
+    color: #a5a5a5;
+    font-size: 15px;
+    line-height: 2;
+    margin-bottom: 24px;
+}
+
+/* LINKS */
+
+.blog-content a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: 0.2s ease;
+}
+
+.blog-content a:hover {
+    border-bottom-color: var(--accent);
+}
+
+/* BOLD TEXT */
+
+.blog-content strong {
+    color: #eeeeee;
+    font-weight: 600;
+}
+
+/* LISTS */
+
+.blog-content ul,
+.blog-content ol {
+    padding-left: 25px;
+    margin: 20px 0 30px;
+    color: #aaa;
+}
+
+.blog-content li {
+    padding-left: 8px;
+    margin-bottom: 12px;
+}
+
+
+/* =========================================
+   MATHEMATICAL EQUATIONS
+========================================= */
+
+.equation {
+    background: #0c0c0c;
+    border: 1px solid #252525;
+    border-left: 3px solid var(--accent);
+    border-radius: 5px;
+
+    padding: 30px 20px;
+    margin: 35px 0;
+
+    color: #ffffff;
+    font-size: 25px;
+    font-family: Georgia, serif;
+    text-align: center;
+}
+
+
+/* =========================================
+   CODE BLOCKS
+========================================= */
+
+.blog-content pre {
+    background: #0c0c0c;
+    border: 1px solid #292929;
+    border-radius: 8px;
+
+    padding: 25px;
+    margin: 30px 0;
+
+    overflow-x: auto;
+    line-height: 1.8;
+}
+
+.blog-content pre code {
+    color: #e8a2b2;
+    font-size: 13px;
+    font-family: "Consolas", "Courier New", monospace;
+    white-space: pre;
+}
+
+/* INLINE CODE */
+
+.blog-content p code,
+.blog-content li code {
+    background: #171717;
+    color: #ff829c;
+    padding: 3px 7px;
+    border-radius: 4px;
+    font-size: 13px;
+}
+
+
+/* =========================================
+   BLOCKQUOTES
+========================================= */
+
+.blog-content blockquote {
+    border-left: 3px solid var(--accent);
+    padding: 12px 25px;
+    margin: 30px 0;
+    background: #0b0b0b;
+    color: #aaa;
+    font-style: italic;
+}
+
+
+/* =========================================
+   IMAGES
+========================================= */
+
+.blog-content img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 35px auto;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+}
+
+.blog-content figure {
+    margin: 35px 0;
+}
+
+.blog-content figcaption {
+    text-align: center;
+    color: #777;
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+.footer {
+    border-top: 1px solid var(--border);
+    padding: 30px 9%;
+    text-align: center;
+    margin-top: 40px;
+}
+
+.footer p {
+    color: #666;
+    font-size: 12px;
+}
+
+
+/* =========================================
+   RESPONSIVE DESIGN
+========================================= */
+
+@media (max-width: 768px) {
+
+    .writing-container {
+        width: 88%;
+        padding-top: 70px;
+    }
+
+    .writing-header h1 {
+        letter-spacing: -1px;
+    }
+
+    .blog-content {
+        margin-top: 45px;
+        font-size: 15px;
+    }
+
+    .blog-content h2 {
+        font-size: 23px;
+        margin-top: 50px;
+    }
+
+    .blog-content pre {
+        padding: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .writing-container {
+        width: 90%;
+        padding-top: 55px;
+    }
+
+    .section-label {
+        font-size: 9px;
+        letter-spacing: 2px;
+    }
+
+    .writing-header h1 {
+        font-size: 38px;
+    }
+
+    .writing-intro {
+        font-size: 14px;
+    }
+
+    .article-meta {
+        gap: 8px;
+    }
+
+    .article-meta span {
+        font-size: 10px;
+    }
+
+    .blog-content h2 {
+        font-size: 21px;
+    }
+
+    .blog-content p {
+        font-size: 14px;
+    }
+
+    .equation {
+        font-size: 20px;
+        padding: 22px 12px;
+    }
+}

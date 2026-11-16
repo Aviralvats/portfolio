@@ -17,6 +17,9 @@ app.get("/", (req, res) => {
 app.get("/projects", (req, res) => {
     res.sendFile(path.join(__dirname, "projects.html"));
 });
+app.get("/linear_Regression", (req, res) => {
+    res.sendFile(path.join(__dirname, "linear.html"));
+});
 
 // Research page
 app.get("/writing", (req, res) => {

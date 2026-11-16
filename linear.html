@@ -1,0 +1,277 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Writing | Aviral Vats</title>
+
+    <link rel="stylesheet" href="regression.css">
+</head>
+<body>
+
+<nav class="navbar">
+    <a href="/" class="logo">Aviral Vats</a>
+
+    <div class="nav-links">
+        <a href="/" class="active">Home</a>
+        <a href="/projects">Projects</a>
+        <a href="/writing">Writing</a>
+    </div>
+
+    <a href="https://github.com/Aviralvats" class="github">
+        GitHub ↗
+    </a>
+</nav>
+
+
+<main class="writing-container">
+
+    <header class="writing-header">
+        <p class="section-label">MACHINE LEARNING / IMPLEMENTATION</p>
+
+        <h1>Implementing Linear Regression from Scratch</h1>
+
+        <p class="writing-intro">
+            Understanding the mathematics behind linear regression
+            and implementing the algorithm from scratch using Python,
+            without relying on machine learning libraries.
+        </p>
+
+        <div class="article-meta">
+            <span>By Aviral Vats</span>
+            <span>16 November 2026</span>
+            <span>1 hour</span>
+        </div>
+    </header>
+
+    <article class="blog-content">
+
+        <h2>Introduction</h2>
+
+        <p>
+            let's first discuss what is machine learning ???????????????<br>
+            In basic terms, ML is the process of training a piece of software, called a model, to make useful predictions or generate content (like text, images, audio, or video) from data.<br>
+            But if we try to understand the definition of ml by IBM<br>
+
+            Machine learning is the subset of artificial intelligence (AI) focused on algorithms that can “learn” the patterns of training data and, subsequently, make accurate inferences about new data. This pattern recognition ability enables machine learning models to make decisions or predictions without explicit, hard-coded instructions.
+            (An inference is an educated guess or conclusion you reach by combining evidence/clues with what you already know)<br>
+            
+
+            This definition says that machine learning a subset of artificial intelligence which focused on developing algorithms(structured steps to solve a problem) i.e. developing structured solution which can understand patterns in training data and use it to make predictions about new data.<br>
+
+            If we classify types of machine learning based on "How they learn" i.e.  By the Amount and Type of Supervision needed<br>
+           <li>
+            <ul>
+                Supervised machine learning
+            </ul>
+            <ul>
+                Unsupervised machine learning 
+            </ul>
+            <ul>
+                ReInforcement machine learning
+            </ul>
+            <ul>
+                Semi-Supervised machine learning
+            </ul>
+           </li>
+
+           In this blog we will talk about supervised machine learning , in the end of this blog i will attach some notes , refrence links and link to some youtube lectures which i highly reccomend you to study after reading this blog to solidify your concepts.
+        </p>
+
+        <p>
+            In this article, I will break down the mathematics
+            behind linear regression and implement it from scratch
+            using Python, without using libraries like Scikit-learn.
+        </p>
+
+        <h2>1. Understanding the Problem</h2>
+
+        <p>
+           First let us talk about supervised learning , dont be scared of the mathematics just spend some time with it and try to study basic maths required for machine learning . 
+
+
+        </p>
+        <img src="dataset.png" alt="Sunset over the ocean" width="600" height="400">
+        <P>the table above is a dataset that contains house area and price of that house (IN 1000's $) . Let's plot this graph and see the graph</P>
+        <img src="plot.png" alt="Sunset over the ocean" width="600" height="400">
+        <p>given the dataset , how can we predict house prices of houses who's area is not mentioned in the dataset??<br>
+            how can we learn to predict the prices of other houses as a function of their area. <br>
+
+            lets set some notations that we will use in future <br>
+            x<sup>i</sup> -> “input” variables (house area in this example), also called input features <br>
+            y<sup>i</sup> -> “output” or target variable that we are trying to predict(price)<br>
+            A pair (x<sup>i</sup>,y<sup>i</sup>) is called a training example, and the datasetthat we’ll be using to learn—a list of n training examples {x<sup>i</sup>, y<sup>i</sup>; i =1, . . . , n}—is called a training set.<br>
+            
+            To describe the supervised learning problem slightly more formally, our goal is, given a training set, to learn a function h : X → Y so that h(x) is a “good” predictor for the corresponding value of y. For historical reasons, this function h is called a hypothesis. <br>
+            Seen pictorially, the process is therefore like this:
+
+        </p>
+         <img src="linear.png" alt="Sunset over the ocean" width="600" height="400">
+       
+        <p>
+            When the target variable that we’re trying to predict is continuous, such
+            as in our housing example, we call the learning problem a <b>regression</b> problem. When y can take on only a small number of discrete values (such as
+            if, given the living area, we wanted to predict if a dwelling is a house or an
+            apartment, say), we call it a <b>classification</b> problem.
+        </p>
+        <h2>2. LINEAR REGRESSION </h2>
+
+        <p>
+           Linear Regression is a fundamental supervised learning algorithm used to model the relationship between a dependent variable and one or more independent variables. It predicts continuous values by fitting a straight line that best represents the data.<br>
+           <li>
+            <ul>
+                It assumes that there is a linear relationship between the input and output
+            </ul>
+            <ul>
+                Uses a best‑fit line to make predictions
+            </ul>
+            <ul>
+                Commonly used in forecasting, trend analysis, and predictive modelling
+            </ul>
+           </li><br>
+           <b>BEST FIT LINE</b>
+           <p>In linear regression, the best-fit line is the straight line that best represents the relationship between the independent variable (input) and the dependent variable (output). The goal is to minimize the difference between the actual data points and the predicted values generated by the model</p><br>
+        </p>
+        <p><b>linear regression</b></p>
+         <img src="linear_2.png" alt="Sunset over the ocean" width="600" height="400">
+         <p>now to make things more interesting lets add one more input feature to our data set i.e. number of rooms 
+            
+            Here, the x’s are two-dimensional vectors in R2. For instance, x<sup>(i)</sup><sub>1</sub> is theliving area of the i-th house in the training set, and x<sup>(i)</sup><sub>2</sub> is its number of bedrooms<br>
+            (In general, when designing a learning problem, it will be up to
+you to decide what features to choose, so if you are out in Portland gathering
+housing data, you might also decide to include other features such as whether
+each house has a fireplace, the number of bathrooms, and so on. We’ll say
+more about feature selection later, but for now let’s take the features as
+given.)<br>
+
+to perform supervised learning , we must decide how we are going to represent our hypothesis function <i>"h"</i> in a computer <br>
+<b>For our initial choice let's choose</b> 
+         </p>
+        <div class="equation">
+            hθ(x) = θ0 + θ1x1 + θ2x2
+        </div>
+
+        <p>
+            Here, the θi
+’s are the parameters (also called weights) parameterizing the
+space of linear functions mapping from X to Y.
+        </p>
+
+        <h2>3. Implementing the Algorithm</h2>
+
+        <p>
+            We will implement the algorithm step by step,
+            starting with our dataset and gradually building
+            the prediction model.
+        </p>
+
+        <pre><code>
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Dataset: Living Area (sq ft) and Price (lakhs)
+X = np.array([1000, 1200, 1500, 1800, 2000, 2200, 2500])
+y = np.array([20, 25, 30, 35, 40, 43, 50])
+
+# Hypothesis Function
+def predict(X, w, b):
+    return w * X + b
+
+# Cost Function (Mean Squared Error)
+def compute_cost(X, y, w, b):
+    m = len(X)
+    predictions = predict(X, w, b)
+    return np.sum((predictions - y) ** 2) / (2 * m)
+
+# Compute Gradients
+def compute_gradient(X, y, w, b):
+    m = len(X)
+    error = predict(X, w, b) - y
+
+    dj_dw = np.sum(error * X) / m
+    dj_db = np.sum(error) / m
+
+    return dj_dw, dj_db
+
+# Gradient Descent
+def gradient_descent(X, y, w, b, alpha, iterations):
+    cost_history = []
+
+    for i in range(iterations):
+        dj_dw, dj_db = compute_gradient(X, y, w, b)
+
+        w = w - alpha * dj_dw
+        b = b - alpha * dj_db
+
+        cost = compute_cost(X, y, w, b)
+        cost_history.append(cost)
+
+        if i % 100 == 0:
+            print(f"Iteration {i}: Cost = {cost:.4f}")
+
+    return w, b, cost_history
+
+# Initialize Parameters
+w = 0
+b = 0
+alpha = 0.0000001
+iterations = 10000
+
+# Train Model
+w, b, cost_history = gradient_descent(
+    X, y, w, b, alpha, iterations
+)
+
+print("\nFinal Weight:", w)
+print("Final Bias:", b)
+
+# Make Prediction
+area = 1600
+price = predict(area, w, b)
+print(f"Predicted Price: {price:.2f} lakhs")
+
+# Plot Regression Line
+plt.scatter(X, y, label="Actual Data")
+plt.plot(X, predict(X, w, b), color="red",
+         label="Regression Line")
+
+plt.xlabel("Living Area (sq ft)")
+plt.ylabel("Price (Lakhs)")
+plt.title("Linear Regression from Scratch")
+plt.legend()
+plt.show()
+
+# Plot Cost Reduction
+plt.plot(cost_history)
+plt.xlabel("Iterations")
+plt.ylabel("Cost")
+plt.title("Gradient Descent Convergence")
+plt.show()
+
+        </code></pre>
+
+        <h2>4. Results and Observations</h2>
+
+        <p>
+            We will examine how well our model fits the data
+            and understand the limitations of linear regression.
+        </p>
+
+        <h2>Conclusion</h2>
+
+        <p>
+            Implementing linear regression from scratch helps
+            us understand what happens behind the scenes
+            instead of simply relying on pre-built libraries.
+        </p>
+
+    </article>
+
+</main>
+
+<script src="script.js"></script>
+
+</body>
+</html>
